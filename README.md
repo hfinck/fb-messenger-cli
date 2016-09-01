@@ -30,7 +30,7 @@ Facebook tries to verify if the endpoint can actually receive messages so we nee
 
 
 ### Localhost Tunnels
-I recommend to use ngrok to pipe messages to your local machine. ngrok can be installed by your favorite package manager (e.g brew on Mac) or downloaded directly through the website [here](https://ngrok.com/download).
+I recommend using ngrok to pipe messages to your local machine. ngrok can be installed by your favorite package manager (e.g brew on Mac) or downloaded directly through the website [here](https://ngrok.com/download).
 
 1. Start a local messaging server
 ```bash
