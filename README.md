@@ -29,7 +29,7 @@ If you want to receive Messenger messages on your local machine you have to set 
 Facebook tries to verify if the endpoint can actually receive messages so we need a local server, which listens to these type of requests and responds to any authentication messages by Facebook.
 
 
-#### Localhost Tunnels
+### Localhost Tunnels
 I recommend to use ngrok to pipe messages to your local machine. ngrok can be installed by your favorite package manager (e.g brew on Mac) or downloaded directly through the website [here](https://ngrok.com/download).
 
 1. Start a local messaging server
