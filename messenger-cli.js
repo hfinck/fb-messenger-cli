@@ -6,6 +6,7 @@ var fs = require('fs');
 var colors = require('colors');
 var program = require('commander');
 var server = require('./modules/server');
+var inquirer = require('inquirer');
 
 // Configure config loader to ignore missing config directory
 process.env.SUPPRESS_NO_CONFIG_WARNING = true;
@@ -38,21 +39,32 @@ function sendMessage(type, options) {
     var msg = require('./messages/' + type + '-message');
     var recipient = options.recipient || defaults.recipient;
     var instance = msg.instance(recipient);
-    console.log(JSON.stringify(instance.toJSON(), null, 2).cyan);
 
-    request.post('', {
-      body: instance,
-      qs: {
-        access_token: options.access_token || defaults.accessToken
-      }
-    }, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log('Message sent 👍'.green);
-      } else {
-        console.log('Failed sending message'.red);
-        console.log(error || body);
-      }
-    });
+    function send(instance, options) {
+      console.log(JSON.stringify(instance.toJSON(), null, 2).cyan);
+      request.post('', {
+        body: instance,
+        qs: {
+          access_token: options.access_token || defaults.accessToken
+        }
+      }, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log('Message sent 👍'.green);
+        } else {
+          console.log('Failed sending message'.red);
+          console.log(error || body);
+        }
+      });
+    }
+
+    if (options.custom) {
+      inquirer.prompt(msg.schema).then(answers => {
+        instance.applyPrompt(answers);
+        send(instance, options);
+      });
+    } else {
+      send(instance, options);
+    }
   } else {
     console.log('Message type %s not found'.red, [type]);
     console.log('Available types are: '.red + '%s'.green, [messageTypes])
@@ -95,6 +107,7 @@ program
   .description('Send a message of the specified type')
   .option('-r, --recipient [user_id]', 'Facebook ID of the recipient')
   .option('-t, --access_token [access_token]', 'Access token to be used for this request')
+  .option('-c, --custom', 'Customize message contents')
   .action(sendMessage);
 
 program

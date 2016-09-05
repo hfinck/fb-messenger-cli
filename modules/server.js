@@ -10,7 +10,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.get('/', (req, res) => {
   if (req.query['hub.verify_token'] === verifyToken) {
-    console.log('Receiving auth request', req.query);
+    console.log('Receiving auth request');
+    console.log(req.query.green);
     res.send(req.query['hub.challenge']);
   } else {
     res.sendStatus(200);

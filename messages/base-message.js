@@ -15,6 +15,10 @@ class BaseMessage {
     return Object.assign({}, { recipient: this.recipient } );
   }
 
+  applyPrompt(answers) {
+    // nothing to do here, just offer interface to be consistent
+  }
+
   static setters() {
     return {
       recipient: 'Recipient Facebook ID'
@@ -24,6 +28,7 @@ class BaseMessage {
 
 module.exports = {
   message: BaseMessage,
-  instance: () => { return new BaseMessage() },
-  description: 'Base message containing recipient id only'
+  instance: (recipientId) => { return new BaseMessage(recipientId) },
+  description: 'Base message containing recipient id only',
+  schema: []
 }
