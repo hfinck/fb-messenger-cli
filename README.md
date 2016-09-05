@@ -12,7 +12,7 @@ and over again.
   messenger-cli.js defaults <recipient_id> <access_token>
 ```
 
-### Sending MessageS
+### Sending Messages
 Messages can be send using the `send` command within the CLI. If you have set your messaging defaults in the previous step you don't even need to provide a recipient ID and access token.
 
 ```bash

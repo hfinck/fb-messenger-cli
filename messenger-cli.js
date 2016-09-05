@@ -62,11 +62,11 @@ function sendMessage(type, options) {
 function loadDefaults(cb) {
   fs.exists(CONFIG_PATH + '/default.json', (hasConfig) => {
     if (hasConfig) {
-      if (config.has('default_recipient')) {
-        defaults.recipient = config.get('default_recipient');
+      if (config.has('recipient')) {
+        defaults.recipient = config.get('recipient');
       }
-      if (config.has('default_access_token')) {
-        defaults.accessToken = config.get('default_access_token');
+      if (config.has('access_token')) {
+        defaults.accessToken = config.get('access_token');
       }
     }
     (cb || () => {})();
@@ -105,6 +105,7 @@ program
 program
   .command('server <cmd>')
   .option('--verify_token [token]', 'Verify token to check with Facebook auth requests')
+  .option('-p, --port [port]', 'Port to have the server listen on')
   .description('Start or stop a server to receive Facebook requests')
   .action((cmd, options) => {
     server.run(options);

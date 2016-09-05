@@ -21,14 +21,14 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   res.sendStatus(200);
   if (req.body) {
-    console.log(JSON.stringify(req.body, null, 2));
+    console.log(JSON.stringify(req.body, null, 2).cyan);
   }
 });
 
 function run(options) {
   if (options.verify_token) {
     verifyToken = options.verify_token;
-    var port = process.env.PORT || 8080;
+    var port = process.env.PORT || options.port || 8080;
     server = app.listen(port, function () {
       console.log(('Facebook Messaging Server listening on port ' + port + '.').green);
     });
