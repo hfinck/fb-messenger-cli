@@ -1,12 +1,32 @@
 {
   "name": "fb-messenger-cli",
-  "version": "0.0.1",
-  "description": "Send mock messages to Messenger using the Facebook Messenger Platform",
-  "main": "messenger-cli.js",
+  "version": "0.10.0",
+  "description": "Send and receive messages using the Facebook Messenger Platform",
+  "author": "Hannes Finck <finck.hannes@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hfinck/fb-messenger-cli.git"
+  },
+  "keywords": [
+    "facebook",
+    "messenger",
+    "cli"
+  ],
+  "licenses": [
+    "MIT"
+  ],
+  "bugs": "https://github.com/hfinck/fb-messenger-cli/issues",
+  "preferGlobal": true,
+  "bin": {
+    "fb-messenger": "bin/fb-messenger.js"
+  },
+  "main": "lib/cli.js",
+  "engines" : {
+    "node" : ">=4.5.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Hannes Finck",
   "dependencies": {
     "body-parser": "^1.15.2",
     "colors": "^1.1.2",
